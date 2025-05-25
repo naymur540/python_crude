@@ -1,0 +1,12 @@
+{% extends "dashboard.html" %}
+
+{% block page_heading %}Delete Student{% endblock %}
+
+{% block content %}
+<p>Are you sure you want to delete <strong>{{ student.name }}</strong>?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, delete</button>
+  <a href="{% url 'student' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

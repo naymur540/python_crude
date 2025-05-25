@@ -1,0 +1,28 @@
+{% extends "dashboard.html" %}
+
+{% block page_heading %}Student Details{% endblock %}
+
+{% block content %}
+<table class="table table-bordered">
+  <tr><th>Name</th><td>{{ student.name }}</td></tr>
+  <tr><th>Age</th><td>{{ student.age }}</td></tr>
+  <tr><th>Date of Birth</th><td>{{ student.date_of_birth }}</td></tr>
+  <tr><th>Father's Name</th><td>{{ student.father_name }}</td></tr>
+  <tr><th>Mother's Name</th><td>{{ student.mother_name }}</td></tr>
+  <tr><th>Address</th><td>{{ student.address }}</td></tr>
+  <tr>
+    <th>Image</th>
+    <td>
+      {% if student.img %}
+        <img src="{{ student.img.url }}" alt="{{ student.name }}" width="150">
+      {% else %}
+        No image
+      {% endif %}
+    </td>
+  </tr>
+</table>
+
+<a href="{% url 'student' %}" class="btn btn-secondary">Back to List</a>
+<a href="{% url 'student_edit' student.id %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'student_delete' student.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="p-4 bg-white shadow rounded" >
+  {% csrf_token %}
+  {{ form.as_p }}
+  <h3 class="mb-4">Edit Student</h3>
+  
+  <div class="mb-3">
+    <label for="id_name" class="form-label">Name</label>
+    <input type="text" name="name" id="id_name" class="form-control" placeholder="Enter full name" value="{{ student.name }}">
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_age" class="form-label">Age</label>
+    <input type="number" name="age" id="id_age" class="form-control" placeholder="Enter age" value="{{ student.age }}">
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_date_of_birth" class="form-label">Date of Birth</label>
+<input type="date" name="date_of_birth" id="id_date_of_birth" class="form-control" value="{{ student.date_of_birth|date:'Y-m-d' }}">
+
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_father_name" class="form-label">Father's Name</label>
+    <input type="text" name="father_name" id="id_father_name" class="form-control" placeholder="Enter father's name" value="{{ student.father_name }}">
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_mother_name" class="form-label">Mother's Name</label>
+    <input type="text" name="mother_name" id="id_mother_name" class="form-control" placeholder="Enter mother's name" value="{{ student.mother_name }}">
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_address" class="form-label">Address</label>
+    <textarea name="address" id="id_address" class="form-control" placeholder="Enter address" rows="3">{{ student.address }}</textarea>
+  </div>
+  
+  <div class="mb-3">
+    <label for="id_img" class="form-label">Photo</label>
+    <input type="file" name="img" id="id_img" class="form-control">
+    {% if student.img %}
+      <img src="{{ student.img.url }}" alt="Current photo" width="100" class="mt-2">
+    {% endif %}
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Update Student</button>
+  <a href="{% url 'student' %}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+
+{% endblock %}
+
